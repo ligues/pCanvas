@@ -21,51 +21,7 @@
   </body>
    <script type="text/javascript">
 
-    	var canvas = new fabric.Canvas('c');
-    	canvas.setBackgroundImage('casa.jpg', canvas.renderAll.bind(canvas));
-
-		fabric.Image.fromURL('toldo.png', function(img) {
-		  img.scale(.5).set({
-		    left: 0,
-		    top: 0,
-		    angle: 0
-		  });
-		  canvas.add(img)//.setActiveObject(img);
-
-		  canvas.item(0).set({
-		    borderColor: 'red',
-		    cornerColor: 'green',
-		    cornerSize: 20,
-		    transparentCorners: false
-		  });
-
-		});
-
-		//var info = document.getElementById('info');
-
-		canvas.on({
-		  'touch:gesture': function() {
-		    //var text = document.createTextNode(' Gesture ');
-		    //info.insertBefore(text, info.firstChild);
-		  },
-		  'touch:drag': function() {
-		    //var text = document.createTextNode(' Dragging ');
-		    //info.insertBefore(text, info.firstChild);
-		  },
-		  'touch:orientation': function() {
-		    //var text = document.createTextNode(' Orientation ');
-		    //info.insertBefore(text, info.firstChild);
-		  },
-		  'touch:shake': function() {
-		    //var text = document.createTextNode(' Shaking ');
-		    //info.insertBefore(text, info.firstChild);
-		  },
-		  'touch:longpress': function() {
-		    //var text = document.createTextNode(' Longpress ');
-		    //info.insertBefore(text, info.firstChild);
-		  }
-		});
-
+    	
 		var imageSaver = document.getElementById('imageSaver');
 		imageSaver.addEventListener('click', saveImage, false);
 
@@ -96,8 +52,8 @@
     <script type="text/javascript">
     	
     	document.addEventListener("deviceready", function(){
-      		alert("aqui");
 
+    		/*
       		 window.canvas2ImagePlugin.saveImageDataToLibrary(
 		        function(msg){
 		            alert(msg);
@@ -106,19 +62,40 @@
 		            alert(err);
 		        },
 		        document.getElementById('c')
-		    );
+		    );*/
 
  		},true);
 
  		function takePicture() {
- 			alert(1);
  			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
 			    destinationType: Camera.DestinationType.DATA_URL
 			});
 
 			function onSuccess(imageData) {
-			    var image = document.getElementById('myImage');
-			    image.src = "data:image/jpeg;base64," + imageData;
+			    //var image = document.getElementById('myImage');
+			    //image.src = "data:image/jpeg;base64," + imageData;
+
+			    var canvas = new fabric.Canvas('c');
+		    	canvas.setBackgroundImage("data:image/jpeg;base64," + imageData , canvas.renderAll.bind(canvas));
+
+				fabric.Image.fromURL('toldo.png', function(img) {
+				  img.scale(.5).set({
+				    left: 0,
+				    top: 0,
+				    angle: 0
+				  });
+				  canvas.add(img)//.setActiveObject(img);
+
+				  canvas.item(0).set({
+				    borderColor: 'red',
+				    cornerColor: 'green',
+				    cornerSize: 20,
+				    transparentCorners: false
+				  });
+
+				});
+
+
 			}
 
 			function onFail(message) {
