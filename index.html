@@ -35,12 +35,12 @@
 			    //var image = document.getElementById('myImage');
 			    //image.src = "data:image/jpeg;base64," + imageData;
  				
- 				//alert(imageURI);
+ 				alert(imageURI);
 
 			    var canvas = new fabric.Canvas('myCanvas');
 		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
 		    	
-
+		    	alert(1);
 				fabric.Image.fromURL('toldo.png', function(img) {
 				  img.scale(.5).set({
 				    left: 0,
