@@ -67,6 +67,32 @@
  		},true);
 
  		function takePicture() {
+
+ 			var canvas = new fabric.Canvas('c');
+		    	canvas.setBackgroundImage('casa.jpg', canvas.renderAll.bind(canvas));
+		    	
+
+				fabric.Image.fromURL('toldo.png', function(img) {
+				  img.scale(.5).set({
+				    left: 0,
+				    top: 0,
+				    angle: 0
+				  });
+				  canvas.add(img)//.setActiveObject(img);
+
+				  canvas.item(0).set({
+				    borderColor: 'red',
+				    cornerColor: 'green',
+				    cornerSize: 20,
+				    transparentCorners: false
+				  });
+
+				});
+
+
+			return;
+
+
  			navigator.camera.getPicture(onSuccess, onFail, { 
  				quality: 50,
 			    destinationType: Camera.DestinationType.FILE_URI,
@@ -78,7 +104,7 @@
 			    //var image = document.getElementById('myImage');
 			    //image.src = "data:image/jpeg;base64," + imageData;
  				
- 				alert(imageURI);
+ 				//alert(imageURI);
 
 			    var canvas = new fabric.Canvas('c');
 		    	//canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
