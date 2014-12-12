@@ -18,12 +18,30 @@
         	canvasMain.height = windowHeight;
 	        
 	        $('#btn_bg').click( function(){
-	        	takePicture();
+	        	getBG();
+	        })
+
+	        $('#btn_save').click( function(){
+	        	save();
 	        })
 
 	    })
 
-	   	function takePicture() {
+	    function save(){
+	    	window.canvas2ImagePlugin.saveImageDataToLibrary(
+		        function(msg){
+		            //console.log(msg);
+		            alert('Se grabo con éxito')
+		        },
+		        function(err){
+		            //console.log(err);
+		            alert('Error:'+err)
+		        },
+		        document.getElementById('myCanvas')
+		    );
+	    }
+
+	   	function getBG() {
 	   		
  			navigator.camera.getPicture(onSuccess, onFail, { 
  				quality: 50,
@@ -50,9 +68,9 @@
 				  canvas.add(img)//.setActiveObject(img);
 
 				  canvas.item(0).set({
-				    borderColor: 'red',
+				    borderColor: 'green',
 				    cornerColor: 'green',
-				    cornerSize: 20,
+				    cornerSize: 24,
 				    transparentCorners: false
 				  });
 
@@ -77,20 +95,30 @@
    			padding: 0;
    		}
 
-   		#btn_bg{
+   		#buttons{
    			position: absolute;
    			z-index: 200;
    			bottom: 10px;
    			left: 10px;
-   			width: 15  0px;
-   			height: 30px;
    		}
+
+   		button{
+   			width: 150px;
+   			height: 30px;
+   			display: inline-block;
+   			margin-left: 10px;
+   		}
+   		
    	</style>
   </head>
 
   <body>
   	<canvas id="myCanvas" width="1" height="1"></canvas>
-  	<button id="btn_bg">Get Background</button>
+  	<div id="buttons">
+	  	<button id="btn_bg">Fondo</button>
+	  	<button id="btn_over">Toldo</button>
+	  	<button id="btn_save">Guardar</button>
+  	</div>
   </body>
 
 </html>
