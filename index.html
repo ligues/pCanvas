@@ -31,7 +31,9 @@
 			    saveToPhotoAlbum:true,
 			    sourceType : Camera.PictureSourceType.CAMERA,
 			    targetWidth:windowWidth,
-			    targetHeight:windowHeight
+			    targetHeight:windowHeight,
+			    encodingType: Camera.EncodingType.JPEG,
+			    correctOrientation: true
 			}); 
 
 			function onSuccess(imageURI) {
