@@ -29,11 +29,9 @@
  				quality: 50,
 			    destinationType: Camera.DestinationType.FILE_URI,
 			    saveToPhotoAlbum:true,
-			    sourceType : Camera.PictureSourceType.CAMERA,
+			    sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
 			    targetWidth:windowWidth,
-			    targetHeight:windowHeight,
-			    encodingType: Camera.EncodingType.JPEG,
-			    correctOrientation: true
+			    targetHeight:windowHeight
 			}); 
 
 			function onSuccess(imageURI) {
