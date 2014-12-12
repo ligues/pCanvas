@@ -9,6 +9,7 @@
    	<script type="text/javascript">
    		var windowWidth;
    		var windowHeight;
+   		var canvas = new fabric.Canvas('myCanvas');
 
 	   	$(document).ready(function() {
 	        windowWidth = window.innerWidth;
@@ -20,6 +21,11 @@
 	        $('#btn_bg').click( function(){
 	        	getBG();
 	        })
+
+	        $('#btn_over').click( function(){
+	        	getOver();
+	        })
+
 
 	        $('#btn_save').click( function(){
 	        	save();
@@ -56,15 +62,58 @@
 			    //var image = document.getElementById('myImage');
 			    //image.src = "data:image/jpeg;base64," + imageData;
  				
-			    var canvas = new fabric.Canvas('myCanvas');
 		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
 		    	
-				fabric.Image.fromURL('toldo.png', function(img) {
+				/*fabric.Image.fromURL('toldo.png', function(img) {
 				  img.scale(.5).set({
 				    left: 0,
 				    top: 0,
 				    angle: 0
 				  });
+				  canvas.add(img)//.setActiveObject(img);
+
+				  canvas.item(0).set({
+				    borderColor: 'green',
+				    cornerColor: 'green',
+				    cornerSize: 24,
+				    transparentCorners: false
+				  });
+
+				});*/
+
+
+			}
+
+			function onFail(message) {
+			    alert('Failed because: ' + message);
+			}
+ 			
+		}
+
+		function getOver() {
+	   		
+ 			navigator.camera.getPicture(onSuccess, onFail, { 
+ 				quality: 50,
+			    destinationType: Camera.DestinationType.FILE_URI,
+			    saveToPhotoAlbum:true,
+			    sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+			    targetWidth:windowWidth,
+			    targetHeight:windowHeight
+			}); 
+
+			function onSuccess(imageURI) {
+			    //var image = document.getElementById('myImage');
+			    //image.src = "data:image/jpeg;base64," + imageData;
+ 				
+		    	//canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
+		    	
+				fabric.Image.fromURL(imageURI, function(img) {
+				  img.scale(.5).set({
+				    left: 0,
+				    top: 0,
+				    angle: 0
+				  });
+
 				  canvas.add(img)//.setActiveObject(img);
 
 				  canvas.item(0).set({
