@@ -20,7 +20,7 @@
         	canvasMain.height = windowHeight;
 	        
         	canvas = new fabric.Canvas('myCanvas');
-	        
+
 	        $('#btn_bg').click( function(){
 	        	getBG();
 	        })
@@ -99,9 +99,8 @@
  				quality: 50,
 			    destinationType: Camera.DestinationType.FILE_URI,
 			    saveToPhotoAlbum:true,
-			    sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
-			    targetWidth:windowWidth,
-			    targetHeight:windowHeight
+			    sourceType : Camera.PictureSourceType.PHOTOLIBRARY
+			    encodingType: Camera.EncodingType.PNG,
 			}); 
 
 			function onSuccess(imageURI) {
