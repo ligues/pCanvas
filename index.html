@@ -13,7 +13,10 @@
 	   	$(document).ready(function() {
 	        windowWidth = window.innerWidth;
 	        windowHeight = window.innerHeight;
-
+	        canvasMain = document.getElementById("myCanvas");
+        	canvasMain.width = windowWidth;
+        	canvasMain.height = windowHeight;
+	        
 	        $('#btn_bg').click( function(){
 	        	takePicture();
 	        })
@@ -26,21 +29,18 @@
  				quality: 50,
 			    destinationType: Camera.DestinationType.FILE_URI,
 			    saveToPhotoAlbum:true,
-			    sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM/*,
+			    sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
 			    targetWidth:windowWidth,
-			    targetHeight:windowHeight*/
+			    targetHeight:windowHeight
 			}); 
 
 			function onSuccess(imageURI) {
 			    //var image = document.getElementById('myImage');
 			    //image.src = "data:image/jpeg;base64," + imageData;
  				
- 				alert(imageURI);
-
 			    var canvas = new fabric.Canvas('myCanvas');
 		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
 		    	
-		    	alert(1);
 				fabric.Image.fromURL('toldo.png', function(img) {
 				  img.scale(.5).set({
 				    left: 0,
