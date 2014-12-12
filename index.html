@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Proto</title>
+    <script src="fabric.js"></script>
     <script src="cordova.js"></script>
-    
     <script src="jquery.min.js"></script>
-   <script src="fabric.js"></script>
+   
   </head>
 
   <body>
-  	<canvas id="c" width="200" height="300" style="display:none"></canvas>
+  	<canvas id="c" width="200" height="300"></canvas>
   	<img id="myImage">
 
   	<a id="imageSaver" href="#">Save image</a>
@@ -68,36 +68,11 @@
 
  		function takePicture() {
 
- 			var canvas = new fabric.Canvas('c');
-		    	canvas.setBackgroundImage('casa.jpg', canvas.renderAll.bind(canvas));
-		    	
-
-				fabric.Image.fromURL('toldo.png', function(img) {
-				  img.scale(.5).set({
-				    left: 0,
-				    top: 0,
-				    angle: 0
-				  });
-				  canvas.add(img)//.setActiveObject(img);
-
-				  canvas.item(0).set({
-				    borderColor: 'red',
-				    cornerColor: 'green',
-				    cornerSize: 20,
-				    transparentCorners: false
-				  });
-
-				});
-
-
-			return;
-
-
  			navigator.camera.getPicture(onSuccess, onFail, { 
  				quality: 50,
 			    destinationType: Camera.DestinationType.FILE_URI,
-			    saveToPhotoAlbum:true,
-			    sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM
+			    saveToPhotoAlbum:true
+			    //,sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM
 			}); 
 
 			function onSuccess(imageURI) {
@@ -107,10 +82,10 @@
  				//alert(imageURI);
 
 			    var canvas = new fabric.Canvas('c');
-		    	//canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
+		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
 		    	
 
-				fabric.Image.fromURL(imageURI, function(img) {
+				fabric.Image.fromURL('toldo.png', function(img) {
 				  img.scale(.5).set({
 				    left: 0,
 				    top: 0,
