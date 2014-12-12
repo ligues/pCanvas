@@ -26,9 +26,9 @@
  				quality: 50,
 			    destinationType: Camera.DestinationType.FILE_URI,
 			    saveToPhotoAlbum:true,
-			    sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+			    sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM/*,
 			    targetWidth:windowWidth,
-			    targetHeight:windowHeight
+			    targetHeight:windowHeight*/
 			}); 
 
 			function onSuccess(imageURI) {
@@ -37,7 +37,7 @@
  				
  				//alert(imageURI);
 
-			    var canvas = new fabric.Canvas('c');
+			    var canvas = new fabric.Canvas('myCanvas');
 		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
 		    	
 
@@ -82,7 +82,7 @@
    			z-index: 200;
    			bottom: 10px;
    			left: 10px;
-   			width: 150px;
+   			width: 15  0px;
    			height: 30px;
    		}
    	</style>
