@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Proto</title>
+    <script src="fabric.js"></script>
+    <script src="cordova.js"></script>
+    <script src="jquery.min.js"></script>
+   	<script type="text/javascript">
+   		var windowWidth;
+   		var windowHeight;
+
+	   	$(document).ready(function() {
+	        windowWidth = window.innerWidth;
+	        windowHeight = window.innerHeight;
+
+	        $('#btn_bg').click( function(){
+	        	takePicture();
+	        })
+
+	    })
+
+	   	function takePicture() {
+	   		
+ 			navigator.camera.getPicture(onSuccess, onFail, { 
+ 				quality: 50,
+			    destinationType: Camera.DestinationType.FILE_URI,
+			    saveToPhotoAlbum:true,
+			    sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+			    targetWidth:windowWidth,
+			    targetHeight:windowHeight
+			}); 
+
+			function onSuccess(imageURI) {
+			    //var image = document.getElementById('myImage');
+			    //image.src = "data:image/jpeg;base64," + imageData;
+ 				
+ 				//alert(imageURI);
+
+			    var canvas = new fabric.Canvas('c');
+		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
+		    	
+
+				fabric.Image.fromURL('toldo.png', function(img) {
+				  img.scale(.5).set({
+				    left: 0,
+				    top: 0,
+				    angle: 0
+				  });
+				  canvas.add(img)//.setActiveObject(img);
+
+				  canvas.item(0).set({
+				    borderColor: 'red',
+				    cornerColor: 'green',
+				    cornerSize: 20,
+				    transparentCorners: false
+				  });
+
+				});
+
+
+			}
+
+			function onFail(message) {
+			    alert('Failed because: ' + message);
+			}
+ 			
+		}
+
+
+
+
+   	</script>
+   	<style type="text/css">
+   		body{
+   			margin: 0;
+   			padding: 0;
+   		}
+
+   		#btn_bg{
+   			position: absolute;
+   			z-index: 200;
+   			bottom: 10px;
+   			left: 10px;
+   			width: 150px;
+   			height: 30px;
+   		}
+   	</style>
+  </head>
+
+  <body>
+  	<canvas id="myCanvas" width="1" height="1"></canvas>
+  	<button id="btn_bg">Get Background</button>
+  </body>
+
+</html>
+
+
