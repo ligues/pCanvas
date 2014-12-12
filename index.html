@@ -9,14 +9,17 @@
    	<script type="text/javascript">
    		var windowWidth;
    		var windowHeight;
-   		var canvas = new fabric.Canvas('myCanvas');
+   		var canvas;
 
 	   	$(document).ready(function() {
+
 	        windowWidth = window.innerWidth;
 	        windowHeight = window.innerHeight;
 	        canvasMain = document.getElementById("myCanvas");
         	canvasMain.width = windowWidth;
         	canvasMain.height = windowHeight;
+	        
+        	canvas = new fabric.Canvas('myCanvas');
 	        
 	        $('#btn_bg').click( function(){
 	        	getBG();
