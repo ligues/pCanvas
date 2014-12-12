@@ -68,7 +68,7 @@
 
  		function takePicture() {
  			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-			    destinationType: Camera.DestinationType.NATIVE_URI
+			    destinationType: Camera.DestinationType.FILE_URI,saveToPhotoAlbum:true
 			}); 
 
 			function onSuccess(imageURI) {
@@ -80,7 +80,6 @@
 			    var canvas = new fabric.Canvas('c');
 		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
 		    	
-		    	alert(2)
 
 				fabric.Image.fromURL('toldo.png', function(img) {
 				  img.scale(.5).set({
