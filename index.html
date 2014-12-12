@@ -67,8 +67,11 @@
  		},true);
 
  		function takePicture() {
- 			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-			    destinationType: Camera.DestinationType.FILE_URI,saveToPhotoAlbum:true
+ 			navigator.camera.getPicture(onSuccess, onFail, { 
+ 				quality: 50,
+			    destinationType: Camera.DestinationType.FILE_URI,
+			    saveToPhotoAlbum:TRUE,
+			    sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM
 			}); 
 
 			function onSuccess(imageURI) {
@@ -78,10 +81,10 @@
  				alert(imageURI);
 
 			    var canvas = new fabric.Canvas('c');
-		    	canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
+		    	//canvas.setBackgroundImage(imageURI, canvas.renderAll.bind(canvas));
 		    	
 
-				fabric.Image.fromURL('toldo.png', function(img) {
+				fabric.Image.fromURL(imageURI, function(img) {
 				  img.scale(.5).set({
 				    left: 0,
 				    top: 0,
