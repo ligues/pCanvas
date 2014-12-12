@@ -14,7 +14,7 @@
   	<img id="myImage">
 
   	<a id="imageSaver" href="#">Save image</a>
-  	<button onclick="takePicture">Foto</button>
+  	<button onclick="takePicture()">Foto</button>
 
   	<img src="">
   	
@@ -111,7 +111,7 @@
  		},true);
 
  		function takePicture() {
-
+ 			alert(1);
  			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
 			    destinationType: Camera.DestinationType.DATA_URL
 			});
