@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Proto</title>
+    <script src="cordova.js"></script>
+    
+    <script src="jquery.min.js"></script>
+   <script src="fabric.js"></script>
+  </head>
+
+  <body>
+  	<canvas id="c" width="200" height="300" style="display:none"></canvas>
+  	<img id="myImage">
+
+  	<a id="imageSaver" href="#">Save image</a>
+  	<button onclick="takePicture">Foto</button>
+
+  	<img src="">
+  	
+  </body>
+   <script type="text/javascript">
+
+    	var canvas = new fabric.Canvas('c');
+    	canvas.setBackgroundImage('casa.jpg', canvas.renderAll.bind(canvas));
+
+		fabric.Image.fromURL('toldo.png', function(img) {
+		  img.scale(.5).set({
+		    left: 0,
+		    top: 0,
+		    angle: 0
+		  });
+		  canvas.add(img)//.setActiveObject(img);
+
+		  canvas.item(0).set({
+		    borderColor: 'red',
+		    cornerColor: 'green',
+		    cornerSize: 20,
+		    transparentCorners: false
+		  });
+
+		});
+
+		//var info = document.getElementById('info');
+
+		canvas.on({
+		  'touch:gesture': function() {
+		    //var text = document.createTextNode(' Gesture ');
+		    //info.insertBefore(text, info.firstChild);
+		  },
+		  'touch:drag': function() {
+		    //var text = document.createTextNode(' Dragging ');
+		    //info.insertBefore(text, info.firstChild);
+		  },
+		  'touch:orientation': function() {
+		    //var text = document.createTextNode(' Orientation ');
+		    //info.insertBefore(text, info.firstChild);
+		  },
+		  'touch:shake': function() {
+		    //var text = document.createTextNode(' Shaking ');
+		    //info.insertBefore(text, info.firstChild);
+		  },
+		  'touch:longpress': function() {
+		    //var text = document.createTextNode(' Longpress ');
+		    //info.insertBefore(text, info.firstChild);
+		  }
+		});
+
+		var imageSaver = document.getElementById('imageSaver');
+		imageSaver.addEventListener('click', saveImage, false);
+
+		function saveImage(e) {
+		    this.href = canvas.toDataURL({
+		        format: 'jpeg',
+		        quality: 0.8
+		    });
+		    this.download = 'test.png'
+		}
+
+		/*
+		function onDeviceReady()
+		{
+		    window.canvas2ImagePlugin.saveImageDataToLibrary(
+		        function(msg){
+		            console.log(msg);
+		        },
+		        function(err){
+		            console.log(err);
+		        },
+		        document.getElementById('c')
+		    );
+		}
+		*/
+
+    </script>
+    <script type="text/javascript">
+    	
+    	document.addEventListener("deviceready", function(){
+      		alert("aqui");
+
+      		 window.canvas2ImagePlugin.saveImageDataToLibrary(
+		        function(msg){
+		            alert(msg);
+		        },
+		        function(err){
+		            alert(err);
+		        },
+		        document.getElementById('c')
+		    );
+
+ 		},true);
+
+ 		function takePicture() {
+
+ 			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+			    destinationType: Camera.DestinationType.DATA_URL
+			});
+
+			function onSuccess(imageData) {
+			    var image = document.getElementById('myImage');
+			    image.src = "data:image/jpeg;base64," + imageData;
+			}
+
+			function onFail(message) {
+			    alert('Failed because: ' + message);
+			}
+ 			
+		}
+
+    </script>
+</html>
+
+
